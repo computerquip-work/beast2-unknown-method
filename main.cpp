@@ -13,7 +13,7 @@ int main()
     input.provide("CUSTOM /records HTTP/1.1\r\n"
                   "Host: localhost\r\nConnection: close\r\n\r\n");
     boost::beast2::http_worker worker(
-        {},
+        http::router<>{},
         http::make_parser_config(http::parser_config(true)),
         http::make_serializer_config(http::serializer_config{}));
     worker.stream = capy::any_read_stream(&input);
